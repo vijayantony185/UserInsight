@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.user.insight.data.UserDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.UserDetailsActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/userDetails"
+            android:background="@color/bg_toolbar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="5dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/clUserImage"
+            android:layout_width="@dimen/imagesize"
+            android:layout_height="@dimen/imagesize"
+            android:layout_margin="@dimen/largepadding"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <ImageView
+                android:id="@+id/ivUserImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/user_image"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zerodp"
+            android:layout_marginTop="@dimen/largepadding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clUserImage">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvTitlePeronalInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_title"
+                    android:padding="@dimen/largepadding"
+                    android:text="@string/personal_information"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/titletextsize"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <LinearLayout
+                    android:id="@+id/llUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/user_name"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.firstName + ` ` + viewModel.singleUserDetailsResponse.lastName}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llEmployerId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/employer_id"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.ein}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llSocialSecurityId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/social_id"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.ssn}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/age"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.age.toString()}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2"
+                    app:layout_constraintTop_toBottomOf="@id/llAge">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/gender"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.gender}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2"
+                    app:layout_constraintTop_toBottomOf="@id/llGender">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/email"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.email}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2"
+                    app:layout_constraintTop_toBottomOf="@id/llEmail">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/phone"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.phone}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llDoB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2"
+                    app:layout_constraintTop_toBottomOf="@id/llPhone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/dob"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.birthDate}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llBloodGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2"
+                    app:layout_constraintTop_toBottomOf="@id/llDoB">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/blood_group"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.bloodGroup}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvTitlePhysicalInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_title"
+                    android:padding="@dimen/largepadding"
+                    android:text="@string/physical_attributes"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/titletextsize"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/llBloodGroup" />
+
+                <LinearLayout
+                    android:id="@+id/llHeigh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitlePhysicalInfo">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/height"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.height.toString()}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2"
+                    app:layout_constraintTop_toBottomOf="@id/llHeigh">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/weight"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.weight.toString()}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvTitleAddressInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_title"
+                    android:padding="@dimen/largepadding"
+                    android:text="@string/address_information"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/titletextsize"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/llWeight" />
+
+                <LinearLayout
+                    android:id="@+id/llAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitleAddressInfo">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/address"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="3"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.address.address+`, `+viewModel.singleUserDetailsResponse.address.city+`, `+viewModel.singleUserDetailsResponse.address.state+` - `+viewModel.singleUserDetailsResponse.address.postalCode+ `.`}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvTitleCompanyInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_title"
+                    android:padding="@dimen/largepadding"
+                    android:text="@string/company_information"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/titletextsize"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/llAddress" />
+
+                <LinearLayout
+                    android:id="@+id/llCompanyName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitleCompanyInfo">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/name"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.company.name}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2"
+                    app:layout_constraintTop_toBottomOf="@id/llCompanyName">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/job"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.company.title+` / `+viewModel.singleUserDetailsResponse.company.department}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llCompanyAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2"
+                    app:layout_constraintTop_toBottomOf="@id/llTitle">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/company_address"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="3"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.company.address.address+`, `+viewModel.singleUserDetailsResponse.company.address.city+`, `+viewModel.singleUserDetailsResponse.company.address.state+` - `+viewModel.singleUserDetailsResponse.company.address.postalCode+ `.`}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvTitleCryptoInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_title"
+                    android:padding="@dimen/largepadding"
+                    android:text="@string/crypto_information"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/titletextsize"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/llCompanyAddress" />
+
+                <LinearLayout
+                    android:id="@+id/llCoinType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2"
+                    app:layout_constraintTop_toBottomOf="@id/llTitle">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/coin"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="3"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.crypto.coin+` / `+viewModel.singleUserDetailsResponse.crypto.network}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llCoinWallerId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_light"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/mediumpadding"
+                    android:weightSum="2"
+                    app:layout_constraintTop_toBottomOf="@id/llTitle">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:text="@string/wallet"
+                        android:textColor="@color/info_text_color" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="3"
+                        android:textStyle="bold"
+                        android:text="@{viewModel.singleUserDetailsResponse.crypto.wallet}"
+                        android:textColor="@color/info_text_color" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

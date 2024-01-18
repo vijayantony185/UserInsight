@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zerodp">0dp</dimen>
+    <dimen name="mediumpadding">5dp</dimen>
+    <dimen name="largepadding">10dp</dimen>
+    <dimen name="imagesize">100dp</dimen>
+    <dimen name="largeimagesize">150dp</dimen>
+    <dimen name="titletextsize">16sp</dimen>
+</resources>
